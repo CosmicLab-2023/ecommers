@@ -18,7 +18,7 @@ const images = [
 ];
 function HeroSection() {
   return (
-    <div className="w-full relative">
+    <section className="w-full relative">
       <Slider navigator={true} flexBasis={"100%"}>
         {images.map((image, ind) => (
           <div key={ind} className="w-full h-full flex flex-col md:flex-row ">
@@ -29,7 +29,7 @@ function HeroSection() {
                   <div className="flex flex-col lg:flex-row  w-full text-start">
                     <div className="w-full p-4 flex flex-col  lg:gap-4 max-w-lg md:max-w-xl mx-auto">
                       <h1 className="text-4xl lg:text-5xl font-extrabold  drop-shadow-[0_1.2px_1.2px_rgba(0,0,0)] md:my-2 py-2">
-                        AGTA PLC
+                        COSMIC SHOP
                       </h1>
                       <h4 className="hidden md:block text-lg lg:text-xl lg:my-2 py-2  drop-shadow-[0_1.2px_1.2px_rgba(0,0,0)]">
                         To Become among the top ten manufacturers and
@@ -39,15 +39,14 @@ function HeroSection() {
                         <Link
                           href="/files/profile.pdf"
                           target="_blank"
-                          className="bg-primary hover:bg-primary-600 text-white py-2 px-4 md:py-4 md:px-8 hover:scale-110 duration-100 ease-in-out
-                       border-primary-500 hover:border-transparent drop-shadow-[0_1.2px_1.2px_rgb(14 165 233)]"
+                          className="btn py-2 px-4 md:py-4"
                         >
                           COMPANY PROFILE
                         </Link>
                         <Link
                           href="https://store.agtaa.com/"
                           target="_blank"
-                          className=" hover:scale-110 text-white py-2 px-4 md:py-4 md:px-8 flex flex-nowrap gap-2 items-center duration-100 ease-in-out"
+                          className="hover:scale-110 text-white py-2 px-4 md:py-4 md:px-8 flex flex-nowrap gap-2 items-center duration-100 ease-in-out"
                         >
                           SHOP HERE
                           <AiOutlineArrowRight />
@@ -73,7 +72,7 @@ function HeroSection() {
         ))}
       </Slider>
       {/* <Status /> */}
-    </div>
+    </section>
   );
 }
 
