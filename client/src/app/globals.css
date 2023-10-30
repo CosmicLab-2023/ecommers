@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply flex text-lg w-full rounded border outline-1 focus:outline  outline-slate-800 dark:outline-slate-200 text-slate-800 pb-1 px-2;
+  }
+  .btn-icon {
+    @apply rounded-full p-[0.4rem] hover:bg-slate-400/50;
+  }
+}
+
+* {
+  transition: background-color 300ms ease-in-out;
+}
