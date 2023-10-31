@@ -29,6 +29,7 @@ function Slider({
       return currentIndex + 1;
     });
   }
+
   function showPrev() {
     setIndex((currentIndex) => {
       if (currentIndex === 0) {
@@ -45,6 +46,7 @@ function Slider({
       return `${-100 * index}%`;
     }
   }
+  
   return (
     <div className="relative z-0 h-fit w-full">
       <div

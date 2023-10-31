@@ -14,6 +14,7 @@ function NavLink({ children }) {
   return (
     <div>
       <div
+        onClick={() => setShow(false)}
         className={`fixed inset-0 bg-black/50 ${
           show && isMobile ? "translate-x-0" : "translate-x-full"
         }`}
@@ -31,7 +32,7 @@ function NavLink({ children }) {
             className={`font-bold ${
               isMobile
                 ? "py-2 px-1 border-b border-slate-500 hover:bg-slate-200 dark:hover:bg-slate-700"
-                : "hover:text-slate-500 dark:hover:text-slate-400"
+                : "link-text"
             }`}
           >
             {link}

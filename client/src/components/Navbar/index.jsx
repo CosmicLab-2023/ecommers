@@ -11,7 +11,10 @@ function Navbar() {
     <header className="sticky z-10  top-0 w-full bg-slate-100 dark:bg-slate-900">
       <nav className="w-full max-w-4xl mx-auto p-2 flex justify-between items-center">
         <div className="flex gap-2 items-center">
-          <div className="text-2xl font-bold">LOGO</div>
+          <Link href="/" className="text-2xl font-bold">
+            LOGO
+          </Link>
+
           <SearchForm />
         </div>
         <div className="flex md:flex-row-reverse gap-2 items-center">
