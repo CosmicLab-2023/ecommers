@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 const useTheme = () => {
   const [theme, setTheme] = useState();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&
@@ -21,7 +21,7 @@ const useTheme = () => {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (theme) {
       if (theme === "dark") {
         document.documentElement.classList.remove("light");

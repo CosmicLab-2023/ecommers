@@ -1,10 +1,10 @@
-// import getProducts from "@/libs/getProducts";
+import getProducts from "@/libs/server/getProducts";
 import HeroSection from "../components/HeroSection";
 import NewArrival from "../components/NewArrival";
 import PopularProducts from "../components/PopularProducts";
 
 export default async function Home() {
-  // const products = await getProducts();
+  const productsData = await getProducts();
   return (
     <>
       <main className="relative">

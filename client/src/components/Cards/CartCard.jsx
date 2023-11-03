@@ -1,18 +1,22 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 function CartCard({ product }) {
   return (
     <div className="w-full p-2 rounded flex gap-2 shadow dark:bg-slate-900">
-      <figure className="rounder">
-        <Image
-          className="h-24 w-24 object-cover"
-          href=""
-          width={400}
-          height={400}
-        />
-      </figure>
+      <Link href={`/products/${product.slug}`}>
+        <figure className="rounder">
+          <Image
+            className="h-24 w-24 object-cover"
+            src=""
+            width={400}
+            height={400}
+            alt=""
+          />
+        </figure>
+      </Link>
+
       <div className="w-full flex flex-col gap-1">
         <div className="flex justify-between items-center">
           <div>Like</div>
@@ -28,7 +32,7 @@ function CartCard({ product }) {
         <Link href={`/products/${product.slug}`}>{product.title}</Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default CartCard
+export default CartCard;

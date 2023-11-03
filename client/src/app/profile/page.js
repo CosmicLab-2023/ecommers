@@ -1,8 +1,12 @@
+import OrdersTable from "@/components/Tables/OrdersTable";
 
-function Page() {
+async function Page() {
+ 
   return (
-    <div>Page</div>
-  )
+    <main>
+      <div>CUSTOMER DASHBOARD</div>
+    </main>
+  );
 }
 
-export default Page
+export default Page;

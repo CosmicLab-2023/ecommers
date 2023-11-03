@@ -50,7 +50,7 @@ function HeroSection() {
               </div>
               <div className="z-0 w-full right-0 relative h-full">
                 <Image
-                  src={image}
+                  src={image??""}
                   alt={"image " + ind}
                   width={1024}
                   height={1024}

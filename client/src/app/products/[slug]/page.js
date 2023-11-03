@@ -13,33 +13,37 @@ function Page({ params: { slug } }) {
                   <figure className="rounder">
                     <Image
                       className="h-20 w-20 object-cover"
-                      href=""
+                      src=""
                       width={400}
                       height={600}
+                      alt=""
                     />
                   </figure>
                   <figure className="rounder">
                     <Image
                       className="h-20 w-20 object-cover"
-                      href=""
+                      src=""
                       width={400}
                       height={600}
+                      alt=""
                     />
                   </figure>
                   <figure className="rounder">
                     <Image
                       className="h-20 w-20 object-cover"
-                      href=""
+                      src=""
                       width={400}
                       height={600}
+                      alt=""
                     />
                   </figure>
                   <figure className="rounder">
                     <Image
                       className="h-20 w-20 object-cover"
-                      href=""
+                      src=""
                       width={400}
                       height={600}
+                      alt=""
                     />
                   </figure>
                 </div>
@@ -47,9 +51,10 @@ function Page({ params: { slug } }) {
                   <figure className="rounder">
                     <Image
                       className="h-96 w-full object-cover"
-                      href=""
+                      src=""
                       width={400}
                       height={600}
+                      alt=""
                     />
                   </figure>
                 </div>

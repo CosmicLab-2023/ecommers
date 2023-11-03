@@ -19,7 +19,6 @@ function RegisterForm() {
   });
 
   async function onSubmit(values, {}) {
-    console.log({ values });
     try {
       const url = `/api/auth/login`;
       const res = await axios.post(url, {
@@ -29,7 +28,6 @@ function RegisterForm() {
         identifier: values.identifier,
         password: values.password,
       });
-      console.log(res.data);
     } catch (e) {}
   }
   return (
@@ -130,7 +128,7 @@ function RegisterForm() {
             />
           </div>
           <div className="flex flex-col gap-1 w-full">
-            <button type="submit" className="btn py-2" disabled={isSubmitting}>
+            <button type="submit" className="btn-primary py-2" disabled={isSubmitting}>
               Submit
             </button>
           </div>

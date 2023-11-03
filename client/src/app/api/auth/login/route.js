@@ -1,24 +1,32 @@
 import { cookies } from "next/headers";
 
 import { host } from "../../../../../host.config";
+import axios from "axios";
 
 export async function POST(req) {
   const { identifier, password } = await req.json();
-  const res = await fetch(`${host}/api/auth/local`, {
-    body: {
+  try {
+    const res = await axios.post(`${host}/api/auth/local`, {
       identifier,
       password,
-    },
-    cache: "no-store",
-  });
+    });
 
-  if (!res.ok) {
-    return Response.json({ status: res.status, message: res.message });
+    const {jwt, user} = res.data;
+
+    cookies().set('token', jwt)
+
+    return Response.json({ user, jwt });
+  } catch (err) {
+    if (err.response.data.error) {
+      return Response.json({
+        status: err.response.data.error.status,
+        message: err.response.data.error.message,
+      });
+    } else {
+      return Response.json({
+        status: 500,
+        message: "Internal Server Error",
+      });
+    }
   }
-
-  const token = await res.json();
-
-  // cookies().set('token', token, { maxAge: 0 })
-
-  return Response.json({ token });
 }

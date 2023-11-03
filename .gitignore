@@ -1,4 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 ############################
 # OS X
 ############################
@@ -114,9 +113,13 @@ dist
 build
 .strapi-updater.json
 
+
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
@@ -146,4 +149,4 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
+

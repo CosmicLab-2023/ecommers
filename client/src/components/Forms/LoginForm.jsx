@@ -1,9 +1,16 @@
 "use client";
-import axios from "axios";
+import { setUser } from "@/libs/features/userSlice";
+import handleLogin from "@/libs/client/handleLogin";
 import { ErrorMessage, Formik } from "formik";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 function LoginForm() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const initialValues = {
     identifier: "",
     password: "",
@@ -14,15 +21,8 @@ function LoginForm() {
   });
 
   async function onSubmit(values, {}) {
-    console.log({ values });
-    try {
-      const url = `/api/auth/login`;
-      const res = await axios.post(url, {
-        identifier: values.identifier,
-        password: values.password,
-      });
-      console.log(res.data);
-    } catch (e) {}
+    const next = searchParams.get("next");
+    await handleLogin(values, dispatch, () => router.push(next ?? "/"));
   }
   return (
     <Formik
@@ -89,7 +89,11 @@ function LoginForm() {
             </Link>
           </div>
           <div className="flex flex-col gap-1 w-full">
-            <button type="submit" className="btn py-2" disabled={isSubmitting}>
+            <button
+              type="submit"
+              className="btn-primary py-2"
+              disabled={isSubmitting}
+            >
               Submit
             </button>
           </div>

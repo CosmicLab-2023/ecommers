@@ -1,12 +1,11 @@
-import React from "react";
-import Profile from "./Profile";
-import NavLink from "./NavLink";
-import SearchForm from "./SearchForm";
 import Link from "next/link";
 import Cart from "./Cart";
+import NavLink from "./NavLink";
+import Profile from "./Profile";
+import SearchForm from "./SearchForm";
 import Theme from "./Theme";
 
-function Navbar() {
+async function Navbar({ user }) {
   return (
     <header className="sticky z-10  top-0 w-full bg-slate-100 dark:bg-slate-900">
       <nav className="w-full max-w-4xl mx-auto p-2 flex justify-between items-center">

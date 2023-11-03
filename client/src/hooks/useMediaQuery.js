@@ -1,13 +1,13 @@
-const { useEffect, useState } = require("react");
+const { useLayoutEffect, useState } = require("react");
 
 function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
-  useEffect(() => {
+  useLayoutEffect(() => {
     const matchQueryList = window.matchMedia(query);
     setMatches(matchQueryList.matches);
   }, []);
   
-  useEffect(() => {
+  useLayoutEffect(() => {
     const matchQueryList = window.matchMedia(query);
     function handleChange(e) {
       setMatches(e.matches);

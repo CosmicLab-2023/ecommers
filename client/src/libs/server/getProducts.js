@@ -1,10 +1,11 @@
-import { host } from "../../host.config";
+import { host } from "../../../host.config";
+import 'server-only'
 
 async function getProducts() {
   const url = `${host}/api/products`;
   const res = await fetch(url, {
     method: "GET",
-    next: { revalidate: 3600 },
+    next: { tags: ['products'] },
   });
 
   if (!res.ok) {
