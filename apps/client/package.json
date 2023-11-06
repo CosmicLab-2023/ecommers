@@ -1,11 +1,11 @@
 {
-  "name": "ecommers",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -31,5 +31,10 @@
     "eslint-config-next": "13.5.6",
     "postcss": "^8",
     "tailwindcss": "^3"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "host.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

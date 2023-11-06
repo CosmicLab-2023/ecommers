@@ -1,0 +1,24 @@
+{
+  "name": "ecommers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/client/start.js",
+  "scripts": {
+    "dev-client": "pm2 start ecosystem.config.js --only client",
+    "dev-server": "pm2 start ecosystem.config.js --only server",
+
+    "start-client": "pm2 start ecosystem.config.js --env production --only client",
+    "start-server": "pm2 start ecosystem.config.js --env production --only server",
+
+    "dev": "pm2 start ecosystem.config.js",
+    "start": "pm2 start ecosystem.config.js --env production",
+
+    "delete": "pm2 delete ecosystem.config.js",
+
+    "delete-client": "pm2 delete ecosystem.config.js --only client",
+    "delete-server": "pm2 delete ecosystem.config.js  --only server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
