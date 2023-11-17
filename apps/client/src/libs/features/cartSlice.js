@@ -9,16 +9,30 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.products.push(action.payload);
+      const products = state.products.filter(
+        (product) => product.id !== action.payload.id
+      );
+      state.products = [...products, action.payload];
     },
     removeFromCart: (state, action) => {
       state.products = state.products.filter(
-        (product) => product.id !== action.id
+        (product) => product.id !== action.payload
       );
     },
+    toggleCartProduct: (state, action) => {
+      const productExist = state.products.find(
+        (product) => product.id === action.payload.id
+      );
+      const products = state.products.filter(
+        (product) => product.id !== action.payload.id
+      );
+      state.products = productExist ? products : [...products, action.payload];
+    },
+    
   },
 });
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, toggleCartProduct, isInCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

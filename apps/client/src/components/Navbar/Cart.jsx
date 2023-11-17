@@ -7,15 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 function Cart() {
   const [show, setShow] = useState(false);
-  const products = [
-    { title: "product 1", slug: "1" },
-    { title: "product 1", slug: "1" },
-    { title: "product 2", slug: "1" },
-    { title: "product 3", slug: "1" },
-    { title: "product 4", slug: "1" },
-  ];
-  const cartProduct = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
+  const cartProducts = useSelector((state) => state.cart.products);
   return (
     <div>
       <div
@@ -30,8 +23,8 @@ function Cart() {
         }`}
       >
         <div className="h-[calc(100%_-_100px)] overflow-y-auto ">
-          {products.length ? (
-            products.map((product, ind) => (
+          {cartProducts.length ? (
+            cartProducts.map((product, ind) => (
               <CartCard key={ind} product={product} />
             ))
           ) : (

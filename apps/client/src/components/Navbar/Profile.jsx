@@ -11,6 +11,7 @@ function Profile() {
   const [show, setShow] = useState();
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);
+
   const dispatch = useDispatch();
   const router = useRouter();
   return (

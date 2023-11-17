@@ -3,13 +3,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { BsCircle, BsCircleFill } from "react-icons/bs";
 
-function Slider({
-  children,
-  flexBasis,
-  maxHeight,
-  showItem,
-  navigator,
-}) {
+function Slider({ children, flexBasis, maxHeight, showItem, navigator }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -46,15 +40,10 @@ function Slider({
       return `${-100 * index}%`;
     }
   }
-  
+
   return (
-    <div className="relative z-0 h-fit w-full">
-      <div
-        style={{
-          maxHeight: maxHeight ?? "80vh",
-        }}
-        className="relative w-full h-fit flex overflow-hidden"
-      >
+    <div className="relative z-0 h-full w-full">
+      <div className="relative w-full h-full flex overflow-hidden">
         {children.map((child, ind) => (
           <div
             key={ind}

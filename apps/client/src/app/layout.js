@@ -6,7 +6,7 @@ import { Inter, Roboto } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({
   subsets: ["greek"],
   weight: ["400"],
@@ -24,7 +24,7 @@ export default async function RootLayout({ children }) {
     ? cookieStore.get("token").value
     : null;
   return (
-    <html lang="en">
+    <html className="dark" lang="en">
       <body
         className={`${roboto.className} bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200`}
       >

@@ -1,6 +1,6 @@
-import isAuthenticated from "@/utils/auth/server";
+import isAuthenticated from "@/helpers/auth/server";
 import { NextResponse } from "next/server";
-import { privateClientRoutes, privateServerRoutes } from "./utils/routers";
+import { privateClientRoutes, privateServerRoutes } from "./helpers/routers";
 
 
 export async function middleware(request) {

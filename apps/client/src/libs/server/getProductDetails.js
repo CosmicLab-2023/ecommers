@@ -1,12 +1,12 @@
 import { host } from "../../../host.config";
 import "server-only";
 
-async function getProducts() {
+async function getProductDetails(slug) {
   try {
-    const url = `${host}/api/products?populate[0]=thumbnail&sort[1]=publishedAt:desc`;
+    const url = `${host}/api/products/${slug}`;
     const res = await fetch(url, {
       method: "GET",
-      next: { tags: ["products"] },
+      next: { tags: [`product/${slug}`] },
     });
 
     if (!res.ok) {
@@ -17,8 +17,8 @@ async function getProducts() {
     const data = await res.json();
     return data
   } catch (error) {
-    return [];
+    return null;
   }
 }
 
-export default getProducts;
+export default getProductDetails;
