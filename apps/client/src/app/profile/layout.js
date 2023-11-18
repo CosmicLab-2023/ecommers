@@ -12,12 +12,12 @@ export default async function Layout({ children }) {
   const cookieStore = cookies();
   const token = cookieStore.has("token");
   return (
-    <main className="flex flex-col md:flex-row gap-2 md:gap-8">
-      <aside className="h-fit">
+    <main className="flex flex-col lg:flex-row gap-2 h-full">
+      <aside className="lg:h-screen bg-slate-100 dark:bg-slate-900 ">
         <ProfileCard user={user} token={token} />
       </aside>
       <section className="w-full px-4 py-4 mx-auto">
-        <div className="w-full">{children}</div>
+        <div className="w-full max-w-7xl mx-auto">{children}</div>
       </section>
     </main>
   );

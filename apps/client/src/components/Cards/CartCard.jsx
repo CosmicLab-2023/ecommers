@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { host } from "../../../host.config";
+import ProductAmountSetter from "../Products/ProductAmountSetter";
 function CartCard({ product }) {
   const dispatch = useDispatch();
   return (
@@ -12,7 +13,7 @@ function CartCard({ product }) {
       <Link href={`/products/${product?.slug}`}>
         <figure className="rounder">
           <Image
-            className="h-24 w-24 object-cover"
+            className="h-32 w-32 object-cover"
             src={`${host}${
               product?.thumbnail?.data?.attributes?.url ??
               product?.thumbnail?.url
@@ -26,7 +27,12 @@ function CartCard({ product }) {
 
       <div className="w-full flex flex-col gap-1">
         <div className="flex justify-between items-center">
-          <div>Like</div>
+          <Link
+            className="text-lg font-bold"
+            href={`/products/${product?.slug}`}
+          >
+            {product?.title}
+          </Link>
           <button onClick={() => dispatch(removeFromCart(product.id))}>
             <AiOutlineClose size={20} />
           </button>
@@ -36,9 +42,8 @@ function CartCard({ product }) {
             <del>{product?.regular_price} ETB</del>
             <div>{product?.last_price} ETB</div>
           </div>
-          {/* <div>Rating</div> */}
         </div>
-        <Link href={`/products/${product?.slug}`}>{product?.title}</Link>
+        <ProductAmountSetter product={product} />
       </div>
     </div>
   );

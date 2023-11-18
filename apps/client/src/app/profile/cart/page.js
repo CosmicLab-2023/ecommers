@@ -6,11 +6,8 @@ import { useSelector } from "react-redux";
 function Page() {
   const cartProducts = useSelector((state) => state.cart.products);
   return (
-    <div className="flex flex-col-reverse md:flex-row gap-4">
-      <div className="w-full max-w-sm">
-        <OrderSummary />
-      </div>
-      <div className="w-full flex flex-col gap-2 h-full">
+    <div className="flex flex-col md:flex-row lg:flex-col xl:flex-row gap-2">
+      <div className="w-full flex flex-col  gap-2 h-full">
         {cartProducts.length ? (
           cartProducts.map((product, ind) => (
             <CartCard key={ind} product={product} />
@@ -20,6 +17,9 @@ function Page() {
             <div className="text-2xl font-bold">Empty Cart</div>
           </div>
         )}
+      </div>
+      <div className="w-full md:max-w-sm lg:max-w-none xl:max-w-sm">
+        <OrderSummary />
       </div>
     </div>
   );

@@ -3,138 +3,51 @@
 import Image from "next/image";
 import Link from "next/link";
 import { host } from "../../../host.config";
+import ProductCard2 from "./ProductCard2";
+import ProductCard from "./ProductCard";
 
 function ProductList2({ products }) {
+  const transform = (products) => {
+    const groups = [];
+    let group = [];
+    products.forEach((element) => {
+      if (group.length <= 5) {
+        group.push(element);
+      } else {
+        groups.push(group);
+        group = [];
+      }
+      console.log({group});
+      console.log({groups});
+    });
+    if (group.length) {
+      groups.push(group)
+    }
+    return groups
+  };
   return (
-    <div className="w-full">
-      {products.slice(1, products.length).map((product, ind) => (
-        <div key={ind}>
-          <div className={`w-full grid grid-cols-2 md:grid-cols-4 grid-rows-4 md:grid-rows-2  gap-4`}>
-            <div className="col-span-2 row-span-2 w-full p-2 rounded-[2rem] flex flex-col gap-2 shadow dark:bg-slate-950">
-              <div className="relative">
-                <Link href={`/products/${product?.attributes?.slug}`}>
-                  <figure className="">
-                    {product?.attributes?.thumbnail && (
-                      <Image
-                        className="h-full w-full object-cover rounded-3xl"
-                        src={`${host}${product?.attributes?.thumbnail?.data?.attributes?.url}`}
-                        width={400}
-                        height={600}
-                        alt=""
-                      />
-                    )}
-                  </figure>
-                </Link>
-                <div className="absolute w-full flex flex-col gap-2 bottom-0 text-white bg-black/20 p-3 rounded-b-3xl">
-                  <Link
-                    href={`/products/${product?.attributes?.slug}`}
-                    className="font-bold text-md"
-                  >
-                    {product?.attributes?.title}
-                  </Link>
-                </div>
+    <div className="w-full flex flex-col gap-16">
+      {transform([...products,...products,...products,...products,...products]).map((group, ind) => (
+        <div key={ind} className="">
+          <div className={`w-full grid md:grid-cols-2 gap-4`}>
+            {ind % 2 == 1 && group?.[0] && (
+              <div className="w-full max-w-2xl grid h-full">
+                <ProductCard2 product={group?.[0]} />
               </div>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-1 md:grid-rows-2">
+              {group?.[1] && <ProductCard product={group?.[1]} />}
+              {group?.[2] && <ProductCard product={group?.[2]} />}
+              {group?.[3] && <ProductCard product={group?.[3]} />}
+              {group?.[4] && <ProductCard product={group?.[4]} />}
+              {/* {group?.[4] && <ProductCard product={group?.[5]} />} */}
+              {/* {group?.[4] && <ProductCard product={group?.[6]} />} */}
             </div>
-            <div className="col-span-1 row-span-1 w-full p-2 rounded-[2rem] flex flex-col gap-2 shadow dark:bg-slate-950">
-              <div className="relative">
-                <Link href={`/products/${product?.attributes?.slug}`}>
-                  <figure className="">
-                    {product?.attributes?.thumbnail && (
-                      <Image
-                        className="h-full w-full object-cover rounded-3xl"
-                        src={`${host}${product?.attributes?.thumbnail?.data?.attributes?.url}`}
-                        width={400}
-                        height={600}
-                        alt=""
-                      />
-                    )}
-                  </figure>
-                </Link>
-                <div className="absolute w-full flex flex-col gap-2 bottom-0 text-white bg-black/20 p-3 rounded-b-3xl">
-                  <Link
-                    href={`/products/${product?.attributes?.slug}`}
-                    className="font-bold text-md"
-                  >
-                    {product?.attributes?.title}
-                  </Link>
-                </div>
+            {ind % 2 == 0 && group?.[0] &&(
+              <div className="w-full max-w-2xl grid  h-full">
+                <ProductCard2 product={group?.[0]} />
               </div>
-            </div>
-            <div className="col-span-1 row-span-1 w-full p-2 rounded-[2rem] flex flex-col gap-2 shadow dark:bg-slate-950">
-              <div className="relative">
-                <Link href={`/products/${product?.attributes?.slug}`}>
-                  <figure className="">
-                    {product?.attributes?.thumbnail && (
-                      <Image
-                        className="h-full w-full object-cover rounded-3xl"
-                        src={`${host}${product?.attributes?.thumbnail?.data?.attributes?.url}`}
-                        width={400}
-                        height={600}
-                        alt=""
-                      />
-                    )}
-                  </figure>
-                </Link>
-                <div className="absolute w-full flex flex-col gap-2 bottom-0 text-white bg-black/20 p-3 rounded-b-3xl">
-                  <Link
-                    href={`/products/${product?.attributes?.slug}`}
-                    className="font-bold text-md"
-                  >
-                    {product?.attributes?.title}
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="col-span-1 row-span-1 w-full p-2 rounded-[2rem] flex flex-col gap-2 shadow dark:bg-slate-950">
-              <div className="relative">
-                <Link href={`/products/${product?.attributes?.slug}`}>
-                  <figure className="">
-                    {product?.attributes?.thumbnail && (
-                      <Image
-                        className="h-full w-full object-cover rounded-3xl"
-                        src={`${host}${product?.attributes?.thumbnail?.data?.attributes?.url}`}
-                        width={400}
-                        height={600}
-                        alt=""
-                      />
-                    )}
-                  </figure>
-                </Link>
-                <div className="absolute w-full flex flex-col gap-2 bottom-0 text-white bg-black/20 p-3 rounded-b-3xl">
-                  <Link
-                    href={`/products/${product?.attributes?.slug}`}
-                    className="font-bold text-md"
-                  >
-                    {product?.attributes?.title}
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="col-span-1 row-span-1 w-full p-2 rounded-[2rem] flex flex-col gap-2 shadow dark:bg-slate-950">
-              <div className="relative">
-                <Link href={`/products/${product?.attributes?.slug}`}>
-                  <figure className="">
-                    {product?.attributes?.thumbnail && (
-                      <Image
-                        className="h-full w-full object-cover rounded-3xl"
-                        src={`${host}${product?.attributes?.thumbnail?.data?.attributes?.url}`}
-                        width={400}
-                        height={600}
-                        alt=""
-                      />
-                    )}
-                  </figure>
-                </Link>
-                <div className="absolute w-full flex flex-col gap-2 bottom-0 text-white bg-black/20 p-3 rounded-b-3xl">
-                  <Link
-                    href={`/products/${product?.attributes?.slug}`}
-                    className="font-bold text-md"
-                  >
-                    {product?.attributes?.title}
-                  </Link>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       ))}

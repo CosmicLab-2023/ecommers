@@ -8,11 +8,35 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    addAmount: (state, action) => {
+      state.products = state.products.map((product) => {
+        if (product.id === action.payload) {
+          return { ...product, amount: product.amount + 1 };
+        }
+        return product
+      });
+    },
+    removeAmount: (state, action) => {
+      state.products = state.products.map((product) => {
+        if (product.id === action.payload) {
+          return { ...product, amount: product.amount - 1 };
+        }
+        return product
+      });
+    },
+    setAmount: (state, action) => {
+      state.products = state.products.map((product) => {
+        if (product.id === action.payload.id) {
+          return { ...product, amount: action.payload.amount };
+        }
+        return product
+      });
+    },
     addToCart: (state, action) => {
       const products = state.products.filter(
         (product) => product.id !== action.payload.id
       );
-      state.products = [...products, action.payload];
+      state.products = [...products, { ...action.payload, amount: 0 }];
     },
     removeFromCart: (state, action) => {
       state.products = state.products.filter(
@@ -26,13 +50,20 @@ export const cartSlice = createSlice({
       const products = state.products.filter(
         (product) => product.id !== action.payload.id
       );
-      state.products = productExist ? products : [...products, action.payload];
+      state.products = productExist
+        ? products
+        : [...products, { ...action.payload, amount: 0 }];
     },
-    
   },
 });
 
-export const { addToCart, removeFromCart, toggleCartProduct, isInCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  toggleCartProduct,
+  removeAmount,
+  addAmount,
+  setAmount,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

@@ -9,7 +9,7 @@ function OrderSummary() {
     if (cartProducts?.length) {
       let total = 0;
       cartProducts.forEach((product) => {
-        total += product?.last_price;
+        total += product?.last_price * product?.amount ?? 1;
       });
       return total;
     }

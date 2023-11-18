@@ -2,42 +2,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { host } from "../../../host.config";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { toggleCartProduct, isInCart } from "@/libs/features/cartSlice";
-import { useMemo } from "react";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
-import { toggleWishlistProduct } from "@/libs/features/wishlistSlice";
+import ProductAddToCartBtn from "./ProductAddToCartBtn";
+import ProductAddToWishlistBtn from "./ProductAddToWishlistBtn";
 function ProductCard2({ product }) {
-  const dispatch = useDispatch();
-  const cartProducts = useSelector((state) => state.cart.products);
-  const isInCart = useMemo(() => {
-    return !!cartProducts?.find((prt) => prt.id === product.id);
-  }, [cartProducts, product.id]);
-
-  const wishlistProducts = useSelector((state) => state.wishlist.products);
-  const isInWishlist = useMemo(() => {
-    return !!wishlistProducts?.find((prt) => prt === product.id);
-  }, [wishlistProducts, product.id]);
-  const user = useSelector((state) => state.user.user);
-  const token = useSelector((state) => state.user.token);
   return (
-    <div className="w-full p-2 rounded-[2rem] flex flex-col gap-2 shadow dark:bg-slate-950">
-      <div className="relative">
-        {user && token && (
-          <button
-            onClick={() => dispatch(toggleWishlistProduct(product.id))}
-            className="absolute top-1 right-1 flex btn-icon p-1"
-          >
-            {isInWishlist ? (
-              <MdFavorite className="text-red-500" size={30} />
-            ) : (
-              <MdFavoriteBorder className="text-red-500" size={30} />
-            )}
-          </button>
-        )}
-        <Link href={`/products/${product?.attributes?.slug}`}>
-          <figure className="">
+    <div className="w-full h-full p-2 rounded-[2rem] flex flex-col gap-2 shadow dark:bg-slate-950">
+      <div className="relative h-full w-full">
+        <div className="absolute  top-1 right-1 ">
+          <ProductAddToWishlistBtn product={product} />
+        </div>
+        <Link
+          className="h-full"
+          href={`/products/${product?.attributes?.slug}`}
+        >
+          <figure className="h-full">
             {product?.attributes?.thumbnail && (
               <Image
                 className="h-full w-full object-cover rounded-3xl"
@@ -64,16 +42,7 @@ function ProductCard2({ product }) {
           >
             {product?.attributes?.title}
           </Link>
-          <button
-            onClick={() =>
-              dispatch(
-                toggleCartProduct({ id: product.id, ...product?.attributes })
-              )
-            }
-            className="btn py-1 w-full"
-          >
-            {!isInCart ? "Add to cart" : "Remove from cart"}
-          </button>
+          <ProductAddToCartBtn product={product} />
         </div>
       </div>
     </div>

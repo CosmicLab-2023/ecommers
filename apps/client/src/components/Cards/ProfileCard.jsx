@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AiOutlineClose, AiOutlineMenuFold } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineMenuFold, AiOutlineClose } from "react-icons/ai";
 
 function ProfileCard() {
   const [show, setShow] = useState();
@@ -14,8 +14,8 @@ function ProfileCard() {
   const router = useRouter();
 
   return (
-    <div className=" w-full md:min-w-[24rem] md:max-w-md h-full">
-      <div className="w-full bg-slate-100 dark:bg-slate-900 flex gap-2 items-center md:hidden p-2">
+    <div className=" w-full h-full lg:min-w-[24rem] lg:max-w-md ">
+      <div className="w-full bg-slate-100 dark:bg-slate-900 flex gap-2 items-center lg:hidden p-2">
         <button
           onClick={() => setShow((prev) => !prev)}
           className={`flex btn-icon`}
@@ -32,19 +32,24 @@ function ProfileCard() {
         <div
           className={`${
             show ? "flex shadow-md drop-shadow rounded" : "hidden"
-          } w-full  absolute md:static md:flex flex-col gap-2  z-[50]  bg-slate-100 dark:bg-slate-900 `}
+          } w-full  absolute lg:static lg:flex flex-col gap-2  z-[50]  bg-slate-100 dark:bg-slate-900 `}
         >
+          <div className="px-2 py-4 bg-slate-100 dark:bg-slate-800">
+            <div className="text-xl font-bold">User Dashboard</div>
+          </div>
           {user && (
             <Link href={"/profile"} className="">
-              <figure className="p-2 flex flex-col gap-2 items-center">
-                <Image
-                  src=""
-                  width={300}
-                  height={300}
-                  alt="user avatar"
-                  className="rounded-full overflow-hidden bg-slate-500 w-32 h-32"
-                />
-              </figure>
+              {user?.profile?.url && (
+                <figure className="p-2 flex flex-col gap-2 items-center">
+                  <Image
+                    src={user?.profile?.url}
+                    width={300}
+                    height={300}
+                    alt="user avatar"
+                    className="rounded-full overflow-hidden bg-slate-500 w-32 h-32"
+                  />
+                </figure>
+              )}
               <div className="text-center">
                 <div>{user.username}</div>
                 <small>{user.email}</small>

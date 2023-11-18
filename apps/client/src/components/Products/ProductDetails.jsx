@@ -2,6 +2,8 @@ import Image from "next/image";
 import React from "react";
 import { host } from "../../../host.config";
 import ImagePreview from "./ImagePreview";
+import Markdown from "react-markdown";
+import ProductAddToCartAmountBtn from "./ProductAddToCartAmountBtn";
 
 function ProductDetails({ product }) {
   return (
@@ -21,21 +23,8 @@ function ProductDetails({ product }) {
                 </h1>
                 <p>{product?.description}</p>
               </article>
-              <div className="flex flex-nowrap w-full gap-4">
-                <div className="bg-white w-fit text-slate-900">
-                  <button className="btn-icon w-8 h-fit p-auto rounded-none">
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    className="w-20 outline-none border-none text-slate-900"
-                  />
-                  <button className="btn-icon w-8 h-fit p-auto rounded-none">
-                    +
-                  </button>
-                </div>
-                <button className="btn px-8">Add to cart</button>
-              </div>
+              <ProductAddToCartAmountBtn product={product} />
+
               <div className="flex justify-between items-center">
                 <div className="flex gap-2 font-bold text-xl">
                   <del>{product?.regular_price} ETB</del>
@@ -46,7 +35,7 @@ function ProductDetails({ product }) {
               <article className="flex flex-col gap-2">
                 <h1 className="text-lg sm:text-xl ">Additional Information</h1>
                 <div>
-                  {/* <Markdown>{product.additional_information}</Markdown> */}
+                  <Markdown>{product.additional_information}</Markdown>
                 </div>
               </article>
             </div>
