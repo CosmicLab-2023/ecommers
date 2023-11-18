@@ -28,11 +28,11 @@ function ProfileCard() {
         </button>
         <div>Profile</div>
       </div>
-      <div className="relative w-full  max-w-xs">
+      <div className="relative w-full h-full">
         <div
           className={`${
-            show ? "flex" : "hidden"
-          } w-full absolute md:static md:flex flex-col gap-2  z-[50]  bg-slate-100 dark:bg-slate-900 shadow-md drop-shadow rounded`}
+            show ? "flex shadow-md drop-shadow rounded" : "hidden"
+          } w-full  absolute md:static md:flex flex-col gap-2  z-[50]  bg-slate-100 dark:bg-slate-900 `}
         >
           {user && (
             <Link href={"/profile"} className="">
@@ -53,27 +53,26 @@ function ProfileCard() {
           )}
 
           <ul className="flex flex-col gap-1 bg-slate-100 dark:bg-slate-900">
-            <li className="py-1 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
+            <li className="py-4 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
               <Link href={"/profile/account"}>Account</Link>
             </li>
-            <li className="py-1 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
+            <li className="py-4 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
               <Link href={"/profile/cart"}>Cart</Link>
             </li>
-            <li className="py-1 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
+            <li className="py-4 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
               <Link href={"/profile/orders"}>Orders</Link>
             </li>
-            <li className="py-1 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
+            <li className="py-4 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
               <Link href={"/profile/wishlist"}>Wishlist</Link>
             </li>
-
-            <li className="py-1 px-1">
+            <li className="py-4 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
               <button
                 onClick={() =>
                   handleLogout(dispatch, () =>
                     router.push("auth/login?next=/profile")
                   )
                 }
-                className="w-full btn-primary py-1"
+                className="w-full text-start"
               >
                 Logout
               </button>

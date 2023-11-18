@@ -18,7 +18,7 @@ const images = [
 ];
 function HeroSection() {
   return (
-    <section className="w-full relative aspect-video max-h-[60vh]">
+    <section className="w-full relative aspect-video max-h-[40vh]">
       <Slider navigator={true} flexBasis={"100%"}>
         {images.map((image, ind) => (
           <div key={ind} className="w-full h-full">
@@ -26,7 +26,7 @@ function HeroSection() {
               <div className="z-10 absolute inset-0 bg-gradient-to-r from-[#000] to-[#0000003d]"></div>
               <div className="z-20 w-full p-4 hidden md:flex flex-col gap-2 max-w-lg mx-auto  text-white md:mx-12 bg-transparent">
                 <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold  drop-shadow md:my-2 py-2">
-                  COSMIC SHOP
+                  E-SUK
                 </h1>
                 <h4 className="text-lg lg:text-xl lg:my-2 py-2  drop-shadow">
                   To Become among the top ten manufacturers and distributors of
@@ -49,13 +49,13 @@ function HeroSection() {
                 </div>
               </div>
               <div className="z-0 w-full right-0 relative h-full">
-                <Image
-                  src={image??""}
-                  alt={"image " + ind}
-                  width={1024}
-                  height={1024}
-                  className="block w-full h-full object-cover "
-                />
+                {/* <Image
+                    src={image}
+                    alt={"image " + ind}
+                    width={1024}
+                    height={1024}
+                    className="block w-full h-full object-cover "
+                  /> */}
               </div>
             </div>
           </div>

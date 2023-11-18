@@ -1,5 +1,5 @@
-import Header from "@/components/Section/Header";
-import ProductList from "../ProductList";
+import Header from "@/components/ui/Header";
+import ProductList from "./ProductList";
 import getProducts from "@/libs/server/getProducts";
 
 async function RelatedProducts({ category }) {

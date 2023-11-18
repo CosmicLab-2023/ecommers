@@ -1,15 +1,16 @@
 import axios from "axios";
 import { setToken, setUser } from "../features/userSlice";
 
-export default async function handleLogin(
+export default async function handleRegister(
   values,
   dispatch,
   callback = () => {}
 ) {
   try {
-    const url = `/api/auth/login`;
+    const url = `/api/auth/register`;
     const res = await axios.post(url, {
-      identifier: values.identifier,
+      username: values.username,
+      email: values.email,
       password: values.password,
     });
     if (res.data.user || res.data.jwt) {

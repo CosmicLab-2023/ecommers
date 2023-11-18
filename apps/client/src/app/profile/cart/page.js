@@ -1,11 +1,28 @@
-import OrdersTable from "@/components/Tables/OrdersTable"
+"use client";
+import CartCard from "@/components/Cards/CartCard";
+import OrderSummary from "@/components/OrderSummary";
+import { useSelector } from "react-redux";
 
 function Page() {
+  const cartProducts = useSelector((state) => state.cart.products);
   return (
-    <div>
-      <OrdersTable />
+    <div className="flex flex-col-reverse md:flex-row gap-4">
+      <div className="w-full max-w-sm">
+        <OrderSummary />
+      </div>
+      <div className="w-full flex flex-col gap-2 h-full">
+        {cartProducts.length ? (
+          cartProducts.map((product, ind) => (
+            <CartCard key={ind} product={product} />
+          ))
+        ) : (
+          <div className="h-full flex flex-col justify-center items-center ">
+            <div className="text-2xl font-bold">Empty Cart</div>
+          </div>
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
-export default Page
+export default Page;

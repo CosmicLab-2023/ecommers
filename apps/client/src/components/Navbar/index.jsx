@@ -8,12 +8,11 @@ import Theme from "./Theme";
 async function Navbar({ user }) {
   return (
     <header className="sticky z-10  top-0 w-full bg-slate-100 dark:bg-slate-900">
-      <nav className="w-full max-w-4xl mx-auto p-2 flex justify-between items-center">
+      <nav className="w-full max-w-[100rem] mx-auto p-4 flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <Link href="/" className="text-2xl font-bold">
-            LOGO
+            E-SUK
           </Link>
-
           <SearchForm />
         </div>
         <div className="flex md:flex-row-reverse gap-2 items-center">

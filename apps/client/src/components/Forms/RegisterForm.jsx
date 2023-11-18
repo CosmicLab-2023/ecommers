@@ -1,34 +1,40 @@
 "use client";
-import axios from "axios";
+import handleRegister from "@/libs/client/handleRegister";
 import { ErrorMessage, Formik } from "formik";
-import * as Yup from "yup";
-import { host } from "../../../host.config";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import Alert from "../ui/Alert";
 function RegisterForm() {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const searchParams = useSearchParams();
+  const [message, setMessage] = useState();
   const initialValues = {
-    name: "",
+    // name: "",
     username: "",
     email: "",
     password: "",
   };
   let userSchema = Yup.object({
-    name: Yup.string().required(),
+    // name: Yup.string().required(),
     username: Yup.string().required(),
     email: Yup.string().required(),
     password: Yup.string().required(),
   });
 
   async function onSubmit(values, {}) {
-    try {
-      const url = `/api/auth/login`;
-      const res = await axios.post(url, {
-        name: values.name,
-        username: values.username,
-        email: values.email,
-        identifier: values.identifier,
-        password: values.password,
+    const next = searchParams.get("next");
+    const response = await handleRegister(values, dispatch, () => router.push(next ?? "/"));
+    if (response?.error) {
+      setMessage({
+        type: "warning",
+        summery: response?.error,
+        title: "Warning ",
       });
-    } catch (e) {}
+    }
   }
   return (
     <Formik
@@ -45,28 +51,20 @@ function RegisterForm() {
         handleSubmit,
         isSubmitting,
       }) => (
-        <form onSubmit={handleSubmit} className=" w-full flex flex-col gap-4">
-          <div className="flex flex-col gap-1 w-full">
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              className={`input ${
-                !!touched.name && !!errors.name
-                  ? "bg-red-300/50 border border-red-500"
-                  : ""
-              }`}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.name}
-            />
-            <ErrorMessage
-              name="name"
-              component="div"
-              className="text-red-500 dark:text-red-300"
-            />
-          </div>
-          <div className="flex flex-col gap-1 w-full">
+        <form
+          onSubmit={handleSubmit}
+          className=" w-full grid grid-cols-2 gap-4"
+        >
+          {message && (
+            <div className="col-span-2">
+              <Alert
+                message={message}
+                handleRemove={() => setMessage(undefined)}
+              />
+            </div>
+          )}
+
+          <div className="col-span-1 flex flex-col gap-1 w-full">
             <label>Username</label>
             <input
               type="text"
@@ -86,7 +84,7 @@ function RegisterForm() {
               className="text-red-500 dark:text-red-300"
             />
           </div>
-          <div className="flex flex-col gap-1 w-full">
+          <div className="col-span-1 flex flex-col gap-1 w-full">
             <label>Email</label>
             <input
               type="text"
@@ -107,7 +105,7 @@ function RegisterForm() {
             />
           </div>
 
-          <div className="flex flex-col gap-1 w-full">
+          <div className="col-span-2 flex flex-col gap-1 w-full">
             <label>Password</label>
             <input
               type="password"
@@ -127,8 +125,12 @@ function RegisterForm() {
               className="text-red-500 dark:text-red-300"
             />
           </div>
-          <div className="flex flex-col gap-1 w-full">
-            <button type="submit" className="btn-primary py-2" disabled={isSubmitting}>
+          <div className="col-span-2 flex flex-col gap-1 w-full">
+            <button
+              type="submit"
+              className="btn-primary py-2"
+              disabled={isSubmitting}
+            >
               Submit
             </button>
           </div>

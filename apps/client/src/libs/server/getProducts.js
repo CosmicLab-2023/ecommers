@@ -3,7 +3,7 @@ import "server-only";
 
 async function getProducts() {
   try {
-    const url = `${host}/api/products?populate[0]=thumbnail&sort[1]=publishedAt:desc`;
+    const url = `${host}/api/products?populate[0]=thumbnail&populate[1]=category&sort[1]=publishedAt:desc`;
     const res = await fetch(url, {
       method: "GET",
       next: { tags: ["products"] },

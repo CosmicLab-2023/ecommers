@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { BsCircle, BsCircleFill } from "react-icons/bs";
 
-function Slider({ children, flexBasis, maxHeight, showItem, navigator }) {
+function Slider({ children, className, showItem, navigator }) {
   const [index, setIndex] = useState(0);
+  const itemRef = useRef()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -49,12 +50,29 @@ function Slider({ children, flexBasis, maxHeight, showItem, navigator }) {
             key={ind}
             style={{
               width: "100%",
-              flexBasis: flexBasis,
               flexShrink: 0,
               flexGrow: 0,
               translate: getTranslate(),
               transition: "translate 300ms ease-in-out",
             }}
+            ref={itemRef}
+            className={className ?? "basis-full"}
+          >
+            {child}
+          </div>
+        ))}
+        {children.map((child, ind) => (
+          <div
+            key={ind}
+            style={{
+              width: "100%",
+              flexShrink: 0,
+              flexGrow: 0,
+              translate: getTranslate(),
+              transition: "translate 300ms ease-in-out",
+            }}
+            ref={itemRef}
+            className={className ?? "basis-full"}
           >
             {child}
           </div>

@@ -4,16 +4,16 @@ import { host } from "../../../../../host.config";
 import axios from "axios";
 
 export async function POST(req) {
-  const { identifier, password } = await req.json();
+  const { password, username, email } = await req.json();
   try {
-    const res = await axios.post(`${host}/api/auth/local`, {
-      identifier,
+    const res = await axios.post(`${host}/api/auth/local/register`, {
       password,
+      username,
+      email,
     });
+    const { jwt, user } = res.data;
 
-    const {jwt, user} = res.data;
-
-    cookies().set('token', jwt)
+    cookies().set("token", jwt);
     cookies().set('userId', user.id)
 
     return Response.json({ user, jwt });

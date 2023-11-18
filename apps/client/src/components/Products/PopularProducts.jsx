@@ -1,14 +1,13 @@
-import Header from "@/components/Section/Header";
-import React from "react";
-import ProductList from "../ProductList";
+import Header from "@/components/ui/Header";
+import ProductList from "./ProductList";
 import getProducts from "@/libs/server/getProducts";
 
-async function NewArrival() {
+async function PopularProducts() {
   const {data:products} = await getProducts()
   return (
-    <section className="w-full relative py-20">
+    <section className="w-full relative py-8">
       <div className="w-full max-w-7xl mx-auto px-2 flex flex-col gap-4">
-        <Header title="New Arrival" />
+        <Header title={"Popular Products"} />
         <ProductList
           products={products}
         />
@@ -17,4 +16,4 @@ async function NewArrival() {
   );
 }
 
-export default NewArrival;
+export default PopularProducts;

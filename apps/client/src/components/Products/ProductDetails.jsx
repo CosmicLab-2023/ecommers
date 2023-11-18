@@ -16,7 +16,7 @@ function ProductDetails({ product }) {
             />
             <div className="flex flex-col gap-4 w-full p-4 sticky top-12 h-fit">
               <article>
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-4xl">
+                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold ">
                   {product?.title}
                 </h1>
                 <p>{product?.description}</p>

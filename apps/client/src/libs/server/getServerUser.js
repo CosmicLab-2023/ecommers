@@ -8,7 +8,7 @@ async function getServerUser() {
   const token = cookieStore.get("token");
   if (token?.value) {
     try {
-      const url = `${host}/api/users/me`;
+      const url = `${host}/api/users/me?populate[0]=wishlists`;
       const res = await fetch(url, {
         method: "GET",
         next: { revalidate: 3600 * 12 * 7 },

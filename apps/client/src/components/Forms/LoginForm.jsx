@@ -6,14 +6,17 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
+import Alert from "../ui/Alert";
+import { useState } from "react";
 function LoginForm() {
   const dispatch = useDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
-
+  const [message, setMessage] = useState();
   const initialValues = {
     identifier: "",
     password: "",
+  
   };
   let userSchema = Yup.object({
     identifier: Yup.string().required(),
@@ -22,7 +25,14 @@ function LoginForm() {
 
   async function onSubmit(values, {}) {
     const next = searchParams.get("next");
-    await handleLogin(values, dispatch, () => router.push(next ?? "/"));
+    const response = await handleLogin(values, dispatch, () => router.push(next ?? "/"));
+    if (response?.error) {
+      setMessage({
+        type: "warning",
+        summery: response?.error,
+        title: "Warning ",
+      });
+    } 
   }
   return (
     <Formik
@@ -40,6 +50,14 @@ function LoginForm() {
         isSubmitting,
       }) => (
         <form onSubmit={handleSubmit} className=" w-full flex flex-col gap-4">
+          {message && (
+            <div className="col-span-2">
+              <Alert
+                message={message}
+                handleRemove={() => setMessage(undefined)}
+              />
+            </div>
+          )}
           <div className="flex flex-col gap-1 w-full">
             <label>Identifier</label>
             <input
@@ -98,7 +116,7 @@ function LoginForm() {
             </button>
           </div>
           <div className="flex flex-row gap-1 w-full">
-            <span>I don't have an account</span>
+            <span>I don&lsquo;t have an account</span>
             <Link href="/auth/register" className="link-text">
               Register
             </Link>

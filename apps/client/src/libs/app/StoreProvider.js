@@ -3,6 +3,7 @@ import { useLayoutEffect } from "react";
 import { Provider, useDispatch } from "react-redux";
 import { setToken, setUser } from "../features/userSlice";
 import { store } from "./store";
+import { setWishlists } from "../features/wishlistSlice";
 
 function StoreProvider({ children, ...rest }) {
   return (
@@ -12,9 +13,10 @@ function StoreProvider({ children, ...rest }) {
   );
 }
 
-function GlobalState({ children, user, token }) {
+function GlobalState({ children, user: userData, token }) {
   const dispatch = useDispatch();
-
+  const { wishlists } = userData??{};
+  const user = { ...userData??{}, wishlists: null };
 
   useLayoutEffect(() => {
     if (!!user) {
@@ -27,6 +29,12 @@ function GlobalState({ children, user, token }) {
       dispatch(setToken(token));
     }
   }, [token]);
+
+  useLayoutEffect(() => {
+    if (!!wishlists) {
+      dispatch(setWishlists(wishlists.map((wl)=>wl.id)));
+    }
+  }, [wishlists]);
 
   return <>{children}</>;
 }

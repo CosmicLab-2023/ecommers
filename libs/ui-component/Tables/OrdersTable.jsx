@@ -61,7 +61,7 @@ function OrdersTable() {
     columnHelper.accessor((row) => row.orderStatus, {
       id: "orderStatus",
       cell: (info) => (
-        <span class="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
+        <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600">
           {info.getValue()}
         </span>
       ),
@@ -85,16 +85,16 @@ function OrdersTable() {
           Orders List
         </div>
       </div>
-      <div class="overflow-hidden rounded dark:bg-slate-900 shadow-md">
+      <div className="overflow-hidden rounded dark:bg-slate-900 shadow-md">
         <table className="w-full border-collapse  text-left text-sm ">
-          <thead class="">
+          <thead className="">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
                     scope="col"
-                    class="px-6 py-4 font-medium"
+                    className="px-6 py-4 font-medium"
                   >
                     {header.isPlaceholder
                       ? null
@@ -125,7 +125,7 @@ function OrdersTable() {
                   <th
                     key={header.id}
                     scope="col"
-                    class="px-6 py-4 font-medium "
+                    className="px-6 py-4 font-medium "
                   >
                     {header.isPlaceholder
                       ? null

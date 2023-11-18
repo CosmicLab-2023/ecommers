@@ -362,6 +362,43 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategoryCategory extends Schema.CollectionType {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    thumbnail: Attribute.Media;
+    slug: Attribute.UID<'api::category.category', 'Title'>;
+    products: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::product.product'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiOrderOrder extends Schema.CollectionType {
   collectionName: 'orders';
   info: {
@@ -431,6 +468,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'api::order.order'
     >;
     slug: Attribute.UID<'api::product.product', 'title'>;
+    category: Attribute.Relation<
+      'api::product.product',
+      'manyToOne',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -783,6 +825,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::category.category': ApiCategoryCategory;
       'api::order.order': ApiOrderOrder;
       'api::product.product': ApiProductProduct;
       'plugin::upload.file': PluginUploadFile;

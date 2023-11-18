@@ -31,26 +31,29 @@ function Profile() {
         ></div>
       )}
       <div
-        className={`absolute w-48 right-0 gap-2 bg-slate-100 dark:bg-slate-900 drop-shadow	${
+        className={`absolute w-72 right-0 gap-2 bg-slate-100 dark:bg-slate-900 drop-shadow p-4	${
           show ? "flex flex-col " : "hidden"
         }`}
       >
-        {user && (
+        {token && user ? (
           <Link href={"/profile"} className="">
             <figure className="p-2 flex gap-2 items-center">
-              <Image
+              {}
+              {/* <Image
                 src=""
                 width={100}
                 height={100}
                 alt="user avatar"
                 className="rounded-full overflow-hidden bg-slate-500 w-10 h-10"
-              />
+              /> */}
               <div>
                 <div>{user.username}</div>
                 <small>{user.email}</small>
               </div>
             </figure>
           </Link>
+        ) : (
+          ""
         )}
 
         <ul className="flex flex-col gap-1">
@@ -77,11 +80,21 @@ function Profile() {
               </li>
             </>
           ) : (
-            <li className="flex py-1 px-1">
-              <Link href={"/auth/login"} className="w-full btn-primary py-1">
-                Login
-              </Link>
-            </li>
+            <>
+              <li className="flex py-1 px-1">
+                <Link href={"/auth/login"} className="w-full btn-primary py-1">
+                  Login
+                </Link>
+              </li>
+              <li className="flex py-1 px-1">
+                <Link
+                  href={"/auth/register"}
+                  className="w-full btn-primary py-1"
+                >
+                  Register
+                </Link>
+              </li>
+            </>
           )}
         </ul>
       </div>

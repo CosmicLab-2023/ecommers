@@ -1,5 +1,2 @@
-export const privateClientRoutes = [
-    '/profile'
-  ];
-  export const privateServerRoutes = [];
-  
+export const privateClientRoutes = ["/profile"];
+export const privateServerRoutes = [];

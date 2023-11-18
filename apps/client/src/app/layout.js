@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import StoreProvider from "@/libs/app/StoreProvider";
 import getServerUser from "@/libs/server/getServerUser";
-import { Inter, Roboto } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
 
@@ -18,6 +18,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
+  
   const user = await getServerUser();
   const cookieStore = cookies();
   const token = cookieStore.has("token")
