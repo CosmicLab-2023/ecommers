@@ -87,7 +87,7 @@ function RegisterForm() {
           <div className="col-span-1 flex flex-col gap-1 w-full">
             <label>Email</label>
             <input
-              type="text"
+              type="email"
               name="email"
               className={`input ${
                 !!touched.email && !!errors.email

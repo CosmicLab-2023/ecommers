@@ -34,7 +34,7 @@ function ProfileCard() {
             show ? "flex shadow-md drop-shadow rounded" : "hidden"
           } w-full  absolute lg:static lg:flex flex-col gap-2  z-[50]  bg-slate-100 dark:bg-slate-900 `}
         >
-          <div className="px-2 py-4 bg-slate-100 dark:bg-slate-800">
+          <div className="px-4 py-4 bg-slate-200 dark:bg-slate-800">
             <div className="text-xl font-bold">User Dashboard</div>
           </div>
           {user && (

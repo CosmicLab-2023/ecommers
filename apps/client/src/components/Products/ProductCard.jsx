@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { host } from "../../../host.config";
-import ProductAddToCartBtn from "./ProductAddToCartBtn";
+import ProductAddToCartBtn from "./AddToCartBtn";
 import ProductAddToWishlistBtn from "./ProductAddToWishlistBtn";
 function ProductCard({ product }) {
   return (

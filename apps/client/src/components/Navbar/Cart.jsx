@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsCartCheck } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import CartCard from "../Cards/CartCard";
+import CartCard from "../Products/CartCard";
 
 function Cart() {
   const [show, setShow] = useState(false);
@@ -48,7 +48,7 @@ function Cart() {
             <div className="text-2xl font-extrabold">Order Subtotal </div>
             <div className="text-2xl font-extrabold">{orderSubtotal} ETB</div>
           </div>
-          <Link href={"/profile/checkout"} className="btn-primary py-2 w-full">
+          <Link href={"/checkout"} className="btn-primary py-2 w-full">
             Checkout
           </Link>
           <Link href={"/profile/cart"} className="btn py-2 w-full">

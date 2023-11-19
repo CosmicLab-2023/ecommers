@@ -5,24 +5,28 @@ import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { host } from "../../../host.config";
-import ProductAmountSetter from "../Products/ProductAmountSetter";
+import ProductAmountSetter from "./AmountSetter";
 function CartCard({ product }) {
   const dispatch = useDispatch();
+  console.log({ product });
   return (
     <div className="w-full p-2 rounded flex gap-2 shadow dark:bg-slate-900">
       <Link href={`/products/${product?.slug}`}>
-        <figure className="rounder">
-          <Image
-            className="h-32 w-32 object-cover"
-            src={`${host}${
-              product?.thumbnail?.data?.attributes?.url ??
-              product?.thumbnail?.url
-            }`}
-            width={400}
-            height={400}
-            alt=""
-          />
-        </figure>
+        {(product?.thumbnail?.data?.attributes?.url ||
+          product?.thumbnail?.url) && (
+          <figure className="rounder">
+            <Image
+              className="h-32 w-32 object-cover"
+              src={`${host}${
+                product?.thumbnail?.data?.attributes?.url ??
+                product?.thumbnail?.url
+              }`}
+              width={400}
+              height={400}
+              alt=""
+            />
+          </figure>
+        )}
       </Link>
 
       <div className="w-full flex flex-col gap-1">

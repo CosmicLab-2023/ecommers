@@ -4,7 +4,8 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "Order"
+    "displayName": "Order",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -22,6 +23,18 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "orders"
+    },
+    "billing_address": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address",
+      "inversedBy": "order"
+    },
+    "shippingAddress": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::address.address",
+      "inversedBy": "order"
     }
   }
 }

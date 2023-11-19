@@ -13,30 +13,36 @@ export const cartSlice = createSlice({
         if (product.id === action.payload) {
           return { ...product, amount: product.amount + 1 };
         }
-        return product
+        return product;
       });
     },
     removeAmount: (state, action) => {
       state.products = state.products.map((product) => {
         if (product.id === action.payload) {
+          if (product.amount <= 1) {
+            return { ...product, amount: 1 };
+          }
           return { ...product, amount: product.amount - 1 };
         }
-        return product
+        return product;
       });
     },
     setAmount: (state, action) => {
       state.products = state.products.map((product) => {
         if (product.id === action.payload.id) {
+          if (action.payload.amount <= 1) {
+            return { ...product, amount: 1 };
+          }
           return { ...product, amount: action.payload.amount };
         }
-        return product
+        return product;
       });
     },
     addToCart: (state, action) => {
       const products = state.products.filter(
         (product) => product.id !== action.payload.id
       );
-      state.products = [...products, { ...action.payload, amount: 0 }];
+      state.products = [...products, { ...action.payload, amount: 1 }];
     },
     removeFromCart: (state, action) => {
       state.products = state.products.filter(
@@ -52,7 +58,7 @@ export const cartSlice = createSlice({
       );
       state.products = productExist
         ? products
-        : [...products, { ...action.payload, amount: 0 }];
+        : [...products, { ...action.payload, amount: 1 }];
     },
   },
 });

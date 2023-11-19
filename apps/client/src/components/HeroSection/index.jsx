@@ -38,13 +38,13 @@ function HeroSection() {
                       href="/shop"
                       className="flex flex-nowrap w-auto h-auto py-1 px-4 md:py-4 md:px-8 justify-center items-start bg-slate-100/5 hover:bg-slate-100 text-slate-100 hover:text-slate-900 border border-slate-100  font-bold duration-300 ease-in-out"
                     >
-                      BAY NEW
+                      SHOP NEW
                     </Link>
                     <Link
                       href="/about"
                       className="hover:scale-110 text-white py-1 px-4 md:py-4 md:px-8 flex flex-nowrap gap-2 items-center duration-300 ease-in-out"
                     >
-                      READ MORE
+                      READ ABOUT US
                       <AiOutlineArrowRight />
                     </Link>
                   </div>

@@ -12,7 +12,7 @@ async function CategorySlider() {
         <div className="w-full max-w-7xl mx-auto ">
           <Slider
             navigator={false}
-            className="basis-full sm:basis-1/2 md:basis-1/4 lg:basis-[20%]"
+            className="basis-1/2 md:basis-1/4 lg:basis-[20%]"
           >
             {products.map((product, ind) => (
               <CategoryCard key={ind} product={product} />
